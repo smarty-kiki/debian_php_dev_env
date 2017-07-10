@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install beanstalkd -y && \
     apt-get install php-fpm -y && \
     apt-get install php-redis -y && \
-    apt-get install supervisor
+    apt-get install supervisor -y
 
 COPY ./shell/start.sh /bin/start
 RUN chown root:root /bin/start && \
