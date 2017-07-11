@@ -14,6 +14,8 @@ COPY ./shell/start.sh /bin/start
 RUN chown root:root /bin/start && \
     chmod +x /bin/start
 
+RUN sed -i -e "s/^listen\ = .*/listen = \/var\/run\/php-fpm\.sock/g" /etc/php/7.0/fpm/pool.d/www.conf
+
 EXPOSE 80
 
 CMD start
