@@ -9,6 +9,6 @@ service beanstalkd start
 service supervisor start
 
 mysql -e "create database \`default\`"
-mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password'"
+mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password'"
 
 tail -n 100 -f /var/log/nginx/access.log /var/log/nginx/error.log /var/log/php7.0-fpm.log /var/log/mysql/error.log /var/log/redis/redis-server.log
