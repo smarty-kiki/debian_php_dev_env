@@ -8,6 +8,7 @@ RUN apt-get update && \
     apt-get install beanstalkd -y && \
     apt-get install php-fpm -y && \
     apt-get install php-redis -y && \
+    apt-get install php-curl -y && \
     apt-get install php-mysql -y && \
     apt-get install supervisor -y
 
