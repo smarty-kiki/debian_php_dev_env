@@ -7,6 +7,7 @@ service beanstalkd start
 service php7.0-fpm start
 service beanstalkd start
 service supervisor start
+service mongodb start
 
 mysql -e "create database \`default\`"
 mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password'"
