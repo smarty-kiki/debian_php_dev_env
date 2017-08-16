@@ -13,6 +13,7 @@ RUN apt-get update && \
     apt-get install php-mysql -y && \
     apt-get install php-mongodb -y && \
     apt-get install php-dom -y && \
+    apt-get install php-mbstring -y && \
     apt-get install supervisor -y
 
 COPY ./shell/start.sh /bin/start
