@@ -1,7 +1,23 @@
 # debian_php_dev_env
-基于 Debian 的开发环境容器
+基于 Debian 的 PHP 开发环境容器
 
-使用方法：
+### 环节说明
+这个开发环境中含有以下组件  
+ * nginx
+ * mariadb-server
+ * redis-server
+ * mongodb
+ * beanstalkd
+ * php-fpm
+ * php-redis
+ * php-curl
+ * php-mysql
+ * php-mongodb
+ * php-dom
+ * php-mbstring
+ * supervisor
+
+### 使用方法：
 
 sudo docker run --rm -ti -p 80:80 -p 3306:3306 --name debian_php_dev_env \  
       -v {CODE_PATH}:/var/www/{PROJECT_NAME} \  
