@@ -1,5 +1,5 @@
 # debian_php_dev_env
-基于 Debian 的 PHP 开发环境容器
+基于 Debian 的 PHP 开发环境容器，现被使用于 frame 框架的开发环境
 
 ### 环节说明
 这个开发环境中含有以下组件
