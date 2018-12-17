@@ -23,6 +23,10 @@ RUN chown root:root /bin/start && \
 
 RUN sed -i -e "s/^listen\ = .*/listen = \/var\/run\/php-fpm\.sock/g" /etc/php/7.0/fpm/pool.d/www.conf
 RUN sed -i -e "s/^bind\-address/#bind\-address/g" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i -e "s/^#general_log/general_log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
+
+RUN touch /tmp/php_{exception,notice}.log && \
+    chown www-data:www-data /tmp/php_{exception,notice}.log
 
 EXPOSE 80 3306
 
