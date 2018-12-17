@@ -2,6 +2,7 @@ FROM debian:latest
 
 RUN apt-get update && \
     apt-get upgrade -y && \
+    apt-get install apt-utils -y && \
     apt-get install nginx -y && \
     apt-get install mariadb-server -y && \
     apt-get install redis-server -y && \
