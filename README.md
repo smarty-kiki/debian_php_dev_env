@@ -16,6 +16,8 @@
  * php-dom
  * php-mbstring
  * php-yaml
+ * phpunit
+ * inotify-tools
  * supervisor
 
 ### 使用方法：
