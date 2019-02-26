@@ -28,8 +28,10 @@ RUN sed -i -e "s/^listen\ = .*/listen = \/var\/run\/php-fpm\.sock/g" /etc/php/7.
 RUN sed -i -e "s/^bind\-address/#bind\-address/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i -e "s/^#general_log/general_log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN touch /tmp/php_{exception,notice}.log && \
-    chown www-data:www-data /tmp/php_{exception,notice}.log
+RUN touch /tmp/php_exception.log && \
+    touch /tmp/php_notice.log && \
+    chown www-data:www-data /tmp/php_exception.log && \
+    chown www-data:www-data /tmp/php_notice.log
 
 EXPOSE 80 3306
 
