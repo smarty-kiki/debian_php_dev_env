@@ -19,6 +19,10 @@ RUN apt-get update && \
     apt-get install php-dev -y && \
     apt-get install phpunit -y && \
     apt-get install inotify-tools -y && \
+    apt-get install wget -y && \
+    apt-get install gnupg -y && \
+    apt-get install zip -y && \
+    apt-get install git -y && \
     apt-get install supervisor -y
 
 COPY ./shell/start.sh /bin/start
