@@ -1,6 +1,7 @@
 server {
     listen       8080;
     root         /var/www/xhgui-branch/webroot;
+    access_log   off;
 
     location / {
         index  index.php;

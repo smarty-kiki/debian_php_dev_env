@@ -23,6 +23,7 @@ RUN apt-get update && \
     apt-get install gnupg -y && \
     apt-get install zip -y && \
     apt-get install git -y && \
+    apt-get install composer -y && \
     apt-get install supervisor -y
 
 COPY ./shell/start.sh /bin/start
