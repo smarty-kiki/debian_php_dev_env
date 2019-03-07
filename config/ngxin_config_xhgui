@@ -1,0 +1,19 @@
+server {
+    listen       8080;
+    root         /var/www/xhgui-branch/webroot;
+
+    location / {
+        index  index.php;
+        if (!-e $request_filename) {
+            rewrite . /index.php last;
+        }
+    }
+
+    location ~ \.php$ {
+	fastcgi_pass   unix:/var/run/php-fpm.sock;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PHP_VALUE 'auto_prepend_file=';
+        include        fastcgi_params;
+    }
+}
