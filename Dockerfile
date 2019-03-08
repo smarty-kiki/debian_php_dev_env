@@ -34,7 +34,8 @@ COPY ./config/ngxin_config_xhgui /etc/nginx/sites-available/xhgui
 RUN ln -fs /etc/nginx/sites-available/xhgui /etc/nginx/sites-enabled/xhgui
 
 RUN git -C /var/www/ clone https://github.com/laynefyc/xhgui-branch.git && \
-    php /var/www/xhgui-branch/install.php
+    cd /var/www/xhgui-branch && \
+    php install.php
 
 RUN git -C /root/ clone https://github.com/tideways/php-xhprof-extension.git && \
     cd /root/php-xhprof-extension/ && \
