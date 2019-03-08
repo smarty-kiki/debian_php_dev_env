@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if  [ -n "$TIMEZONE" ]
+then
+    cp /usr/share/zoneinfo/$TIMEZONE /etc/localtime
+    echo $TIMEZONE >/etc/timezone
+fi
+
 service nginx start
 service mysql start
 service redis-server start
