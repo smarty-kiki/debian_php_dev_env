@@ -43,6 +43,9 @@ RUN git -C /root/ clone https://github.com/tideways/php-xhprof-extension.git && 
     ./configure && \
     make && make install
 
+RUN echo extension=tideways_xhprof.so > /etc/php/7.0/mods-available/tideways.ini && \
+    ln -fs /etc/php/7.0/mods-available/tideways.ini /etc/php/7.0/fpm/conf.d/20-tideways_xhprof.ini
+
 RUN sed -i -e "s/^listen\ = .*/listen = \/var\/run\/php-fpm\.sock/g" /etc/php/7.0/fpm/pool.d/www.conf
 RUN sed -i -e "s/^bind\-address/#bind\-address/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i -e "s/^#general_log/general_log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
