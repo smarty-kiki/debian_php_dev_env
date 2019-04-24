@@ -21,7 +21,7 @@ mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'passw
 date > /tmp/php_exception.log
 date > /tmp/php_notice.log
 
-if [ -e $AFTER_START_SHELL ]
+if [ -f "$AFTER_START_SHELL" ]
 then
     /bin/bash $AFTER_START_SHELL
 fi
