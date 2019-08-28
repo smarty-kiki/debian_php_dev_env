@@ -17,6 +17,7 @@ RUN apt-get update && \
     apt-get install php-mbstring -y && \
     apt-get install php-yaml -y && \
     apt-get install php-dev -y && \
+    apt-get install php-zip -y && \
     apt-get install phpunit -y && \
     apt-get install inotify-tools -y && \
     apt-get install wget -y && \
@@ -46,6 +47,7 @@ RUN git -C /root/ clone https://github.com/tideways/php-xhprof-extension.git && 
 RUN echo extension=tideways_xhprof.so > /etc/php/7.0/mods-available/tideways.ini && \
     ln -fs /etc/php/7.0/mods-available/tideways.ini /etc/php/7.0/fpm/conf.d/20-tideways_xhprof.ini
 
+RUN sed -i -e "s/^zlib\.output_compression\ = .*/zlib\.output_compression = \On/g" /etc/php/7.0/fpm/php.ini
 RUN sed -i -e "s/^listen\ = .*/listen = \/var\/run\/php-fpm\.sock/g" /etc/php/7.0/fpm/pool.d/www.conf
 RUN sed -i -e "s/^bind\-address/#bind\-address/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i -e "s/^#general_log/general_log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
