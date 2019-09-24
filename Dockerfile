@@ -69,6 +69,8 @@ RUN touch /tmp/php_exception.log && \
     chown www-data:www-data /tmp/php_exception.log && \
     chown www-data:www-data /tmp/php_notice.log
 
+ENV LC_ALL C.UTF-8
+
 EXPOSE 80 3306
 
 CMD start
