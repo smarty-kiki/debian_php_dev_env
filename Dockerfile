@@ -25,11 +25,20 @@ RUN apt-get update && \
     apt-get install zip -y && \
     apt-get install git -y && \
     apt-get install composer -y && \
+    apt-get install vim -y && \
+    apt-get install tmux -y && \
+    apt-get install tmuxinator -y && \
     apt-get install supervisor -y
 
 COPY ./shell/start.sh /bin/start
 RUN chown root:root /bin/start && \
     chmod +x /bin/start
+
+COPY ./config/bashrc /root/.bashrc
+COPY ./config/tmux.conf /root/.tmux.conf
+
+RUN mkdir -p /root/.tmuxinator
+COPY ./config/tmuxinator_init.yml /root/.tmuxinator/init.yml
 
 COPY ./config/ngxin_config_xhgui /etc/nginx/sites-available/xhgui
 RUN ln -fs /etc/nginx/sites-available/xhgui /etc/nginx/sites-enabled/xhgui
