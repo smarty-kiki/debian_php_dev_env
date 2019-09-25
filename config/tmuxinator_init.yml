@@ -36,7 +36,7 @@ windows:
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'access-log'
-            - tail -n 100 -F /var/log/nginx/access.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
+            - tail -n 100 -F /var/log/nginx/access.log | perl -pe 's/( 200 )|( 304 )|( 500 | 502 | 503 )/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
         - list:
             - printf '\033]2;%s\033\\' 'error-log'
             - tail -n 100 -F /var/log/nginx/error.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
@@ -45,7 +45,7 @@ windows:
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'fpm-log'
-            - tail -n 100 -F /var/log/php7.0-fpm.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
+            - tail -n 100 -F /var/log/php7.0-fpm.log | perl -pe 's/(NOTICE)|(STRICT)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - php-code-logs:
       layout: even-horizontal
       panes:
@@ -66,11 +66,17 @@ windows:
             - tail -n 100 -F /var/log/mysql/error.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
         - list:
             - printf '\033]2;%s\033\\' 'log'
-            - tail -n 100 -F /var/log/mysql/mysql.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
+            - tail -n 100 -F /var/log/mysql/mysql.log | awk 'gsub(/^      *|    *$/,"")' | perl -pe 's/(Close stmt|Quit|Connect)|(Execute)|(ROLLBACK)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - redis-logs:
       layout: even-horizontal
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'log'
             - tail -n 100 -F /var/log/redis/redis-server.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
-  - bash: ~
+  - mongodb-logs:
+      layout: even-horizontal
+      panes:
+        - list:
+            - printf '\033]2;%s\033\\' 'log'
+            - tail -n 100 -F /var/log/mongodb/mongodb.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
+  - bash: printf '\033]2;%s\033\\' 'bash'
