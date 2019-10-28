@@ -9,47 +9,57 @@ windows:
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'access-log'
+            - clear
             - tail -n 100 -F /var/log/nginx/access.log | perl -pe 's/( 200 )|( 304 )|( 500 | 502 | 503 )/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
         - list:
             - printf '\033]2;%s\033\\' 'error-log'
+            - clear
             - tail -n 100 -F /var/log/nginx/error.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - php7.0-fpm-logs:
       layout: even-horizontal
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'fpm-log'
+            - clear
             - tail -n 100 -F /var/log/php7.0-fpm.log | perl -pe 's/(NOTICE)|(STRICT)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - php-code-logs:
       layout: even-horizontal
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'exception-log'
+            - clear
             - tail -n 100 -F /tmp/php_exception.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
         - list:
             - printf '\033]2;%s\033\\' 'notice-log'
+            - clear
             - tail -n 100 -F /tmp/php_notice.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
         - list:
             - printf '\033]2;%s\033\\' 'module-log'
+            - clear
             - tail -n 100 -F /tmp/php_module.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - mysql-logs:
       layout: even-horizontal
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'error-log'
+            - clear
             - tail -n 100 -F /var/log/mysql/error.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
         - list:
             - printf '\033]2;%s\033\\' 'log'
+            - clear
             - tail -n 100 -F /var/log/mysql/mysql.log | awk 'gsub(/^\t*|\t*$/,"")' | perl -pe 's/(Close stmt|Quit|Connect)|(Execute)|(ROLLBACK)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - redis-logs:
       layout: even-horizontal
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'log'
+            - clear
             - tail -n 100 -F /var/log/redis/redis-server.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - mongodb-logs:
       layout: even-horizontal
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'log'
+            - clear
             - tail -n 100 -F /var/log/mongodb/mongodb.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - bash: printf '\033]2;%s\033\\' 'bash'
