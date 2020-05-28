@@ -67,7 +67,9 @@ windows:
             - clear
             - tail -n 100 -F /var/log/mongodb/mongodb.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - bash:
-      - list:
-          - printf '\033]2;%s\033\\' 'bash'
-          - cd $PRJ_HOME
-          - clear
+      layout: even-horizontal
+      panes:
+        - list:
+            - printf '\033]2;%s\033\\' 'bash'
+            - cd $PRJ_HOME
+            - clear
