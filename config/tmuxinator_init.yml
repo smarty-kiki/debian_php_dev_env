@@ -47,7 +47,7 @@ windows:
         - list:
             - printf '\033]2;%s\033\\' 'log'
             - clear
-            - tail -n 100 -F /var/log/mysql/mysql.log | awk 'gsub(/^\t*|\t*$/,"")' | perl -pe 's/(Close stmt|Quit|Connect)|(Execute)|(ROLLBACK)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
+            - tail -n 100 -F /var/log/mysql/mysql.log | perl -pe 's/(Close stmt|Quit|Connect)|(Execute)|(ROLLBACK)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - redis-logs:
       layout: even-horizontal
       panes:
