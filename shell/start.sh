@@ -26,6 +26,4 @@ then
     /bin/bash $AFTER_START_SHELL
 fi
 
-#tail -n 100 -F /var/log/nginx/access.log /var/log/nginx/error.log /var/log/php7.0-fpm.log /var/log/mysql/error.log /var/log/redis/redis-server.log  /tmp/php_exception.log /tmp/php_notice.log /var/log/mysql/mysql.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
-
 tmuxinator init
