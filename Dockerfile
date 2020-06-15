@@ -66,8 +66,10 @@ RUN sed -i -e "s/'extension'.*$/'extension'\ =>\ 'tideways_xhprof',/g" /var/www/
 
 RUN touch /tmp/php_exception.log && \
     touch /tmp/php_notice.log && \
+    touch /tmp/php_module.log && \
     chown www-data:www-data /tmp/php_exception.log && \
-    chown www-data:www-data /tmp/php_notice.log
+    chown www-data:www-data /tmp/php_notice.log && \
+    chown www-data:www-data /tmp/php_module.log
 
 ENV LC_ALL C.UTF-8
 
