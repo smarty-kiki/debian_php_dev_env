@@ -1,5 +1,7 @@
 FROM debian:stretch
 
+COPY ./config/apt_source.list /etc/apt/sources.list
+
 RUN apt-get update && \
     apt-get install apt-utils -y && \
     apt-get upgrade -y && \
@@ -8,16 +10,16 @@ RUN apt-get update && \
     apt-get install redis-server -y && \
     apt-get install mongodb -y && \
     apt-get install beanstalkd -y && \
-    apt-get install php-fpm -y && \
-    apt-get install php-redis -y && \
-    apt-get install php-curl -y && \
-    apt-get install php-mysql -y && \
-    apt-get install php-mongodb -y && \
-    apt-get install php-dom -y && \
-    apt-get install php-mbstring -y && \
-    apt-get install php-yaml -y && \
-    apt-get install php-dev -y && \
-    apt-get install php-zip -y && \
+    apt-get install php7.4-fpm -y && \
+    apt-get install php7.4-redis -y && \
+    apt-get install php7.4-curl -y && \
+    apt-get install php7.4-mysql -y && \
+    apt-get install php7.4-mongodb -y && \
+    apt-get install php7.4-xml -y && \
+    apt-get install php7.4-mbstring -y && \
+    apt-get install php7.4-yaml -y && \
+    apt-get install php7.4-dev -y && \
+    apt-get install php7.4-zip -y && \
     apt-get install phpunit -y && \
     apt-get install inotify-tools -y && \
     apt-get install wget -y && \
@@ -53,11 +55,11 @@ RUN git -C /root/ clone https://github.com/tideways/php-xhprof-extension.git && 
     ./configure && \
     make && make install
 
-RUN echo extension=tideways_xhprof.so > /etc/php/7.0/mods-available/tideways.ini && \
-    ln -fs /etc/php/7.0/mods-available/tideways.ini /etc/php/7.0/fpm/conf.d/20-tideways_xhprof.ini
+RUN echo extension=tideways_xhprof.so > /etc/php/7.4/mods-available/tideways.ini && \
+    ln -fs /etc/php/7.4/mods-available/tideways.ini /etc/php/7.4/fpm/conf.d/20-tideways_xhprof.ini
 
-RUN sed -i -e "s/^zlib\.output_compression\ = .*/zlib\.output_compression = \On/g" /etc/php/7.0/fpm/php.ini
-RUN sed -i -e "s/^listen\ = .*/listen = \/var\/run\/php-fpm\.sock/g" /etc/php/7.0/fpm/pool.d/www.conf
+RUN sed -i -e "s/^zlib\.output_compression\ = .*/zlib\.output_compression = \On/g" /etc/php/7.4/fpm/php.ini
+RUN sed -i -e "s/^listen\ = .*/listen = \/var\/run\/php-fpm\.sock/g" /etc/php/7.4/fpm/pool.d/www.conf
 RUN sed -i -e "s/^bind\-address/#bind\-address/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i -e "s/^#general_log/general_log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i -e "s/^query_cache_limit\ .*/query_cache_limit\ =\ 0M/g" /etc/mysql/mariadb.conf.d/50-server.cnf
