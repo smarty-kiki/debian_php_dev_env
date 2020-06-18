@@ -6,10 +6,10 @@ then
     echo $TIMEZONE >/etc/timezone
 fi
 
+service php7.4-fpm start
 service nginx start
 service mysql start
 service redis-server start
-service php7.0-fpm start
 service beanstalkd start
 service supervisor start
 service mongodb start
@@ -20,6 +20,7 @@ mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'passw
 
 date > /tmp/php_exception.log
 date > /tmp/php_notice.log
+date > /tmp/php_module.log
 
 if [ -f "$AFTER_START_SHELL" ]
 then

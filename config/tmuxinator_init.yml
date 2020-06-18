@@ -15,13 +15,13 @@ windows:
             - printf '\033]2;%s\033\\' 'error-log'
             - clear
             - tail -n 100 -F /var/log/nginx/error.log | perl -pe 's/(DEBUG)|(INFO)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
-  - php7.0-fpm-logs:
+  - php-fpm-logs:
       layout: even-horizontal
       panes:
         - list:
             - printf '\033]2;%s\033\\' 'fpm-log'
             - clear
-            - tail -n 100 -F /var/log/php7.0-fpm.log | perl -pe 's/(NOTICE)|(STRICT)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
+            - tail -n 100 -F /var/log/php-fpm.log | perl -pe 's/(NOTICE)|(STRICT)|(ERROR|EXCEPTION)/\e[1;34m$1\e[0m\e[1;33m$2\e[0m\e[1;31m$3\e[0m/gi'
   - php-code-logs:
       layout: even-horizontal
       panes:
