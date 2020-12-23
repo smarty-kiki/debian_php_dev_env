@@ -11,6 +11,7 @@ windows:
           - printf '\033]2;%s\033\\' 'bash'
           - cd $PRJ_HOME
           - clear
+          - sleep 5
           - toilet 'ctrl + b, d to quit' -t -F gay
   - nginx-logs:
       layout: even-horizontal
