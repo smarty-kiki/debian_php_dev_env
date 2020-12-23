@@ -30,7 +30,8 @@ RUN apt-get update && \
     apt-get install vim -y && \
     apt-get install tmux -y && \
     apt-get install tmuxinator -y && \
-    apt-get install supervisor -y
+    apt-get install supervisor -y && \
+    apt-get install toilet -y
 
 COPY ./shell/start.sh /bin/start
 RUN chown root:root /bin/start && \
