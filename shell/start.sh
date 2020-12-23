@@ -8,7 +8,7 @@ fi
 
 service php7.4-fpm start
 service nginx start
-service mysql start
+service mariadb start
 service redis-server start
 service beanstalkd start
 service supervisor start
