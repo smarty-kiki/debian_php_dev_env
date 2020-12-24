@@ -6,13 +6,15 @@ then
     echo $TIMEZONE >/etc/timezone
 fi
 
-service php7.4-fpm start
-service nginx start
-service mariadb start
-service redis-server start
-service beanstalkd start
-service supervisor start
-service mongodb start
+service php7.4-fpm   start > /dev/null &
+service nginx        start > /dev/null &
+service mariadb      start > /dev/null &
+service redis-server start > /dev/null &
+service beanstalkd   start > /dev/null &
+service supervisor   start > /dev/null &
+service mongodb      start > /dev/null &
+
+wait
 
 mysql -e "create database \`default\`;\
     GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';\
