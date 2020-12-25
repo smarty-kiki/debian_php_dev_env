@@ -16,10 +16,6 @@ service mongodb      start > /dev/null &
 
 wait
 
-mysql -e "create database \`default\`;\
-    GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';\
-    GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password'"
-
 date > /tmp/php_exception.log
 date > /tmp/php_notice.log
 date > /tmp/php_module.log
