@@ -31,7 +31,9 @@ RUN apt-get update && \
     apt-get install tmux -y && \
     apt-get install tmuxinator -y && \
     apt-get install supervisor -y && \
-    apt-get install toilet -y
+    apt-get install toilet -y && \
+    apt-get install python3-pip && \
+    pip install mycli
 
 COPY ./shell/start.sh /bin/start
 RUN chown root:root /bin/start && \
