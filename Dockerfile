@@ -32,7 +32,7 @@ RUN apt-get update && \
     apt-get install tmuxinator -y && \
     apt-get install supervisor -y && \
     apt-get install toilet -y && \
-    apt-get install python3-pip && \
+    apt-get install python3-pip -y && \
     pip install mycli
 
 COPY ./shell/start.sh /bin/start

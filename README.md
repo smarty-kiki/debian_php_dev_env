@@ -9,16 +9,16 @@
  * mongodb
  * beanstalkd
  * php-fpm
- * php-redis
- * php-curl
- * php-mysql
- * php-mongodb
- * php-dom
- * php-mbstring
- * php-yaml
  * phpunit
  * inotify-tools
  * supervisor
+ * wget
+ * git
+ * composer
+ * vim
+ * tmux
+ * pip
+ * mycli
 
 ### 使用方法：
 
@@ -30,4 +30,4 @@ sudo docker run --rm -ti -p 80:80 -p 3306:3306 --name debian_php_dev_env \
 
 示例：
 
-https://github.com/smarty-kiki/micro_api_frame/blob/master/project/tool/start_dev_server.sh
+https://github.com/smarty-kiki/api_frame/blob/master/project/tool/start_development_server.sh
