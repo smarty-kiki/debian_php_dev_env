@@ -45,7 +45,7 @@ COPY ./config/tmux.conf /root/.tmux.conf
 RUN mkdir -p /root/.tmuxinator
 COPY ./config/tmuxinator_init.yml /root/.tmuxinator/init.yml
 
-COPY ./config/ngxin_config_xhgui /etc/nginx/sites-available/xhgui
+COPY ./config/nginx_config_xhgui /etc/nginx/sites-available/xhgui
 RUN ln -fs /etc/nginx/sites-available/xhgui /etc/nginx/sites-enabled/xhgui
 
 RUN git -C /var/www/ clone https://github.com/laynefyc/xhgui-branch.git && \
@@ -69,7 +69,14 @@ RUN sed -i -e "s/^bind\-address/#bind\-address/g" /etc/mysql/mariadb.conf.d/50-s
 RUN sed -i -e "s/^#general_log/general_log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i -e "s/^query_cache_limit\ .*/query_cache_limit\ =\ 0M/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i -e "s/^query_cache_size\ .*/query_cache_size\ =\ 0M/g" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i -e "s/^#slow_query_log_file\ .*/slow_query_log_file\ =\ \/var\/log\/mysql\/slow\.log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i -e "/^slow_query_log_file/a\slow_query_log\ =\ on" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i -e "s/^#long_query_time\ .*/long_query_time\ =\ 0\.5/g" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i -e "s/^#log_slow_verbosity\ .*/log_slow_verbosity\ =\ query_plan\,explain/g" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i -e "s/^#log-queries-not-using-indexes.*/log-queries-not-using-indexes\ =\ on/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i -e "s/^#log_error/log_error/g" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i -e "s/^skip_log_error/^#skip_log_error/g" /etc/mysql/mariadb.conf.d/50-mysqld_safe.cnf
+RUN sed -i -e "s/^syslog/^#syslog/g" /etc/mysql/mariadb.conf.d/50-mysqld_safe.cnf
 RUN sed -i -e "s/^#BEANSTALKD_EXTRA=.*/BEANSTALKD_EXTRA=\"-z\ 524280\"/g" /etc/default/beanstalkd
 RUN sed -i -e "s/'extension'.*$/'extension'\ =>\ 'tideways_xhprof',/g" /var/www/xhgui-branch/config/config.default.php
 
