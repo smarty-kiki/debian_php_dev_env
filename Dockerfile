@@ -61,24 +61,8 @@ RUN git -C /root/ clone https://github.com/tideways/php-xhprof-extension.git && 
 RUN echo extension=tideways_xhprof.so > /etc/php/7.4/mods-available/tideways.ini && \
     ln -fs /etc/php/7.4/mods-available/tideways.ini /etc/php/7.4/fpm/conf.d/20-tideways_xhprof.ini
 
-RUN sed -i -e "s/^zlib\.output_compression\ = .*/zlib\.output_compression = \On/g" /etc/php/7.4/fpm/php.ini
-RUN sed -i -e "s/^;max_input_vars\ = .*/max_input_vars\ =\ 20000/g" /etc/php/7.4/fpm/php.ini
-RUN sed -i -e "s/^listen\ = .*/listen = \/var\/run\/php-fpm\.sock/g" /etc/php/7.4/fpm/pool.d/www.conf
-RUN sed -i -e "s/^error_log\ = .*/error_log = \/var\/log\/php-fpm\.log/g" /etc/php/7.4/fpm/php-fpm.conf
-RUN sed -i -e "s/^bind\-address/#bind\-address/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^#general_log/general_log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^query_cache_limit\ .*/query_cache_limit\ =\ 0M/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^query_cache_size\ .*/query_cache_size\ =\ 0M/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^#slow_query_log_file\ .*/slow_query_log_file\ =\ \/var\/log\/mysql\/slow\.log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "/^slow_query_log_file/a\slow_query_log\ =\ on" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^#long_query_time\ .*/long_query_time\ =\ 0\.5/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^#log_slow_verbosity\ .*/log_slow_verbosity\ =\ query_plan\,explain/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^#log-queries-not-using-indexes.*/log-queries-not-using-indexes\ =\ on/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^#log_error/log_error/g" /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i -e "s/^skip_log_error/^#skip_log_error/g" /etc/mysql/mariadb.conf.d/50-mysqld_safe.cnf
-RUN sed -i -e "s/^syslog/^#syslog/g" /etc/mysql/mariadb.conf.d/50-mysqld_safe.cnf
-RUN sed -i -e "s/^#BEANSTALKD_EXTRA=.*/BEANSTALKD_EXTRA=\"-z\ 524280\"/g" /etc/default/beanstalkd
-RUN sed -i -e "s/'extension'.*$/'extension'\ =>\ 'tideways_xhprof',/g" /var/www/xhgui-branch/config/config.default.php
+COPY ./shell/config_init.sh /tmp/config_init.sh
+RUN /bin/bash /tmp/config_init.sh
 
 RUN touch /tmp/php_exception.log && \
     touch /tmp/php_notice.log && \
