@@ -49,8 +49,9 @@ COPY ./config/tmuxinator_init.yml /root/.tmuxinator/init.yml
 COPY ./config/nginx_config_xhgui /etc/nginx/sites-available/xhgui
 RUN ln -fs /etc/nginx/sites-available/xhgui /etc/nginx/sites-enabled/xhgui
 
-COPY ./extend_github/xhgui-branch /var/www/xhgui-branch
-RUN /usr/bin/php /var/www/xhgui-branch/install.php
+RUN git -C /var/www/ clone https://github.com/laynefyc/xhgui-branch.git && \
+    cd /var/www/xhgui-branch && \
+    php install.php
 
 COPY ./extend_github/php-xhprof-extension /root/php-xhprof-extension
 RUN cd /root/php-xhprof-extension/ && \
