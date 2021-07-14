@@ -50,8 +50,7 @@ COPY ./config/nginx_config_xhgui /etc/nginx/sites-available/xhgui
 RUN ln -fs /etc/nginx/sites-available/xhgui /etc/nginx/sites-enabled/xhgui
 
 COPY ./extend_github/xhgui-branch /var/www/xhgui-branch
-RUN cd /var/www/xhgui-branch && \
-    php install.php
+RUN /usr/bin/php /var/www/xhgui-branch/install.php
 
 COPY ./extend_github/php-xhprof-extension /root/php-xhprof-extension
 RUN cd /root/php-xhprof-extension/ && \
