@@ -53,8 +53,8 @@ RUN git -C /var/www/ clone https://github.com/laynefyc/xhgui-branch.git && \
     cd /var/www/xhgui-branch && \
     php install.php
 
-COPY ./extend_github/php-xhprof-extension /root/php-xhprof-extension
-RUN cd /root/php-xhprof-extension/ && \
+RUN git -C /root/ clone https://github.com/tideways/php-xhprof-extension.git && \
+    cd /root/php-xhprof-extension/ && \
     phpize && \
     ./configure && \
     make && make install
