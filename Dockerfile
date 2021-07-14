@@ -65,13 +65,6 @@ RUN echo extension=tideways_xhprof.so > /etc/php/7.4/mods-available/tideways.ini
 COPY ./shell/config_init.sh /tmp/config_init.sh
 RUN /bin/bash /tmp/config_init.sh
 
-RUN touch /tmp/php_exception.log && \
-    touch /tmp/php_notice.log && \
-    touch /tmp/php_module.log && \
-    chown www-data:www-data /tmp/php_exception.log && \
-    chown www-data:www-data /tmp/php_notice.log && \
-    chown www-data:www-data /tmp/php_module.log
-
 ENV LC_ALL C.UTF-8
 
 EXPOSE 80 3306
