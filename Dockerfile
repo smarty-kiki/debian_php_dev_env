@@ -49,12 +49,12 @@ COPY ./config/tmuxinator_init.yml /root/.tmuxinator/init.yml
 COPY ./config/nginx_config_xhgui /etc/nginx/sites-available/xhgui
 RUN ln -fs /etc/nginx/sites-available/xhgui /etc/nginx/sites-enabled/xhgui
 
-RUN git -C /var/www/ clone https://github.com/laynefyc/xhgui-branch.git && \
-    cd /var/www/xhgui-branch && \
+COPY ./extend_github/xhgui-branch /var/www/xhgui-branch
+RUN cd /var/www/xhgui-branch && \
     php install.php
 
-RUN git -C /root/ clone https://github.com/tideways/php-xhprof-extension.git && \
-    cd /root/php-xhprof-extension/ && \
+COPY ./extend_github/php-xhprof-extension /root/php-xhprof-extension
+RUN cd /root/php-xhprof-extension/ && \
     phpize && \
     ./configure && \
     make && make install
