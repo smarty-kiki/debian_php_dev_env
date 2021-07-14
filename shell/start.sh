@@ -16,10 +16,6 @@ service mongodb      start > /dev/null &
 
 wait
 
-date > /tmp/php_exception.log
-date > /tmp/php_notice.log
-date > /tmp/php_module.log
-
 if [ -f "$AFTER_START_SHELL" ]
 then
     /bin/bash $AFTER_START_SHELL

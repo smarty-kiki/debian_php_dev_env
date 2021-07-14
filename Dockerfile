@@ -20,6 +20,7 @@ RUN apt-get update && \
     apt-get install php7.4-yaml -y && \
     apt-get install php7.4-dev -y && \
     apt-get install php7.4-zip -y && \
+    apt-get install php7.4-gd -y && \
     apt-get install phpunit -y && \
     apt-get install inotify-tools -y && \
     apt-get install wget -y && \
