@@ -11,6 +11,7 @@ sed -i -e "s/^#general_log/general_log/g" /etc/mysql/mariadb.conf.d/50-server.cn
 sed -i -e "s/^query_cache_limit\ .*/query_cache_limit\ =\ 0M/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 sed -i -e "s/^query_cache_size\ .*/query_cache_size\ =\ 0M/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 sed -i -e "s/^#slow_query_log_file\ .*/slow_query_log_file\ =\ \/var\/log\/mysql\/slow\.log/g" /etc/mysql/mariadb.conf.d/50-server.cnf
+sed -i -e "s/^#skip\-name\-resolve/skip\-name\-resolve/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 sed -i -e "/^slow_query_log_file/a\slow_query_log\ =\ on" /etc/mysql/mariadb.conf.d/50-server.cnf
 sed -i -e "s/^#long_query_time\ .*/long_query_time\ =\ 0\.5/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 sed -i -e "s/^#log_slow_verbosity\ .*/log_slow_verbosity\ =\ query_plan\,explain/g" /etc/mysql/mariadb.conf.d/50-server.cnf
