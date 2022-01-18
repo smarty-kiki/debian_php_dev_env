@@ -9,8 +9,8 @@ RUN apt-get update && \
     apt-get install mariadb-server -y && \
     apt-get install redis-server -y && \
     apt-get install mongodb -y && \
-    apt-get install beanstalkd -y && \
-    apt-get install php7.4-fpm -y && \
+    apt-get install beanstalkd -y
+RUN apt-get install php7.4-fpm -y && \
     apt-get install php7.4-redis -y && \
     apt-get install php7.4-curl -y && \
     apt-get install php7.4-mysql -y && \
@@ -20,8 +20,8 @@ RUN apt-get update && \
     apt-get install php7.4-yaml -y && \
     apt-get install php7.4-dev -y && \
     apt-get install php7.4-zip -y && \
-    apt-get install php7.4-gd -y && \
-    apt-get install phpunit -y && \
+    apt-get install php7.4-gd -y
+RUN apt-get install phpunit -y && \
     apt-get install inotify-tools -y && \
     apt-get install wget -y && \
     apt-get install gnupg -y && \
@@ -32,8 +32,8 @@ RUN apt-get update && \
     apt-get install tmux -y && \
     apt-get install tmuxinator -y && \
     apt-get install supervisor -y && \
-    apt-get install toilet -y && \
-    apt-get install python3-pip -y && \
+    apt-get install toilet -y
+RUN apt-get install python3-pip -y && \
     pip install mycli
 
 COPY ./shell/start.sh /bin/start
