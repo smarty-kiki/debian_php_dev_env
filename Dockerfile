@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:bullseye
 
 COPY ./config/apt_source.list /etc/apt/sources.list
 
